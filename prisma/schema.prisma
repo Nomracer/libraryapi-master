@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://library-gurkan.database.windows.net:1433;database=Library;user=Nomracer;password=Sebnem1977"
+  shadowDatabaseUrl="sqlserver://library-gurkan.database.windows.net:1433;database=LibraryShadow;user=Nomracer;password=Sebnem1977"
+}
+model userdatas{
+  id      Int         @id @default(autoincrement())
+  okulNo  Int         @unique
+  email   String      @unique
+  sifre   String      @unique
+  admin   Boolean     
+  teacher Boolean   
+  student Boolean
+  name    String
+  surname String
+}
+
+model kiralananlar{
+  id      Int       @id @default(autoincrement())
+  userId  Int       
+  kitapId Int       
+  teslimTarih String
+}
+
+model kitaplar {
+  id          Int         @id @default(autoincrement())
+  adi         String
+  basimYili   String
+  adet        Int
+  kalanKitap  Int
+  yazar       String
+  sayfaSayisi Int
+  kategori    String
+  
+}
